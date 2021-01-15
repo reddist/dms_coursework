@@ -1,0 +1,10 @@
+<svg width="180" height="70" xmlns="http://www.w3.org/2000/svg">
+<!-- <rect fill="#2f4050" id="canvas_background" height="72" width="180" y="-1" x="-1"/>-->
+ <path id="svg_2" d="m-546.5,-272.5625c671,335 87,187 82,187c-5,0 -56,-146 -55.5,-145.4375c-0.5,-0.5625 190.5,37.4375 191,38c-0.5,-0.5625 453.5,255.4375 -217.5,-79.5625z" stroke-width="1.5" stroke="#000" fill="#fff"/>
+ <line id="svg_4" y1="10" y2="40" x1="12" x2="12" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+ <line id="svg_7" y1="10" y2="10" x2="59" x1="11" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+ <line id="svg_5" y1="59" y2="59" x2="168" x1="120" stroke-width="1.5" stroke="#ffffff" fill="#2f4050"/>
+ <line id="svg_6" y1="60" y2="30" x2="168" x1="168" stroke-width="1.5" stroke="#ffffff" fill="none"/>
+ <text font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="24" id="svg_8" y="37.59943" x="40.04548" stroke-width="0" stroke="#000000" fill="#ffffff">REDDIST</text>
+ <text xml:space="preserve" text-anchor="start" font-family="sans-serif" font-size="9" id="svg_9" y="50.55397" x="43.22365" stroke-width="0" stroke="#000000" fill="#ffffff">Software laboratories</text>
+</svg>

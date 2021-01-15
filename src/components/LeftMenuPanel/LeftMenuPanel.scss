@@ -1,0 +1,36 @@
+.panel-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__title {
+    color: hsla(0,0%,100%,.5);
+    min-height: 40px;
+    padding: 5px 47px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    transition: color .25s linear;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    .panel-menu__item_active &, &:hover {
+      color: #ffffff;
+    }
+  }
+
+  &__logo {
+    height: 70px;
+    width: 180px;
+    margin: 0 10px;
+  }
+}

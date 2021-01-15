@@ -1,6 +1,6 @@
 import createSagaMiddleware from "redux-saga";
 import { createStore, applyMiddleware, compose } from "redux";
-//import sagas from "./saga";
+import sagas from "./saga";
 import reducer from "./reducer";
 
 const createAppStore = () => {
@@ -14,7 +14,7 @@ const createAppStore = () => {
     composeEnhancer(applyMiddleware(sagaMiddleware))
   );
 
-  //sagas.forEach((saga) => sagaMiddleware.run(saga));
+  sagas.forEach((saga) => sagaMiddleware.run(saga));
 
   return store;
 };

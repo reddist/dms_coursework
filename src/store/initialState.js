@@ -1,12 +1,12 @@
 const initialState = {
   app: {
-    is_authorised: true,
     tables: {
       available_tables: [],
       data: {},
+      data_loading: false,
     },
     current_table: "",
-    loading: true,
+    loading: false,
   }
 };
 

@@ -1,42 +1,23 @@
 import React from "react";
-
-import SimpleStore from "./components/helpers/function/SimpleStore"
-import { selectIsAuthorised } from "./store/selectors";
-import { useSelector } from "react-redux";
-
-import Table from "./components/helpers/Table/Table";
-import TableRow from "./components/helpers/Table/TableRow";
-import TableHeaderRow from "./components/helpers/Table/TableHeaderRow";
+// import SimpleStore from "./components/helpers/function/SimpleStore"
+// import { useSelector } from "react-redux";
+//
+// import Table from "./components/helpers/Table/Table";
+// import TableRow from "./components/helpers/Table/TableRow";
+// import TableHeaderRow from "./components/helpers/Table/TableHeaderRow";
+import LeftMenuPanel from "./components/LeftMenuPanel/LeftMenuPanel";
+import HeaderContent from "./components/HeaderContent/HeaderContent";
+import MainContent from "./components/MainContent/MainContent";
 
 const App = () => {
-  const is_authorised = useSelector(selectIsAuthorised);
-  console.log(SimpleStore("password"));
-  SimpleStore("password", null);
-  if (!is_authorised) {
-    window.location = "/auth";
-    return;
-  }
   return (
-    is_authorised? (
-      <div className="page">
-        <div className="page__panel">
-
-        </div>
-        <div className="page__content">
-          <header className="page__header">
-
-          </header>
-          <main className="main-content">
-
-          </main>
-        </div>
+    <div className="page">
+      <LeftMenuPanel />
+      <div className="page__content">
+        <HeaderContent />
+        <MainContent />
       </div>
-    ) : (
-      <div>
-        <p>Вы не авторизированы.</p>
-        <a href="/auth">Авторизоваться</a>
-      </div>
-    )
+    </div>
   );
 }
 
