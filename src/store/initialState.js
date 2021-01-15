@@ -4,6 +4,7 @@ const initialState = {
       available_tables: [],
       data: {},
       data_loading: false,
+      selected_rows: [],
     },
     current_table: "",
     loading: false,

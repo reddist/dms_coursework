@@ -4,7 +4,7 @@ body{
   font-size: 16px;
   line-height: 20px;
   color: #2f4050;
-  background-color: #f7f7f9;
+  background-color: #f7f7f9 !important;
 }
 
 .page {
@@ -68,7 +68,7 @@ body{
 }
 
 .page__content .container-fluid.page__wrapper {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-bottom: 20px;
 }
 .page__content .container-fluid {
@@ -90,11 +90,15 @@ body{
   box-sizing: border-box;
 }
 
+.main-content .ant-table-thead > tr > th {
+  background-color: #fafafa;
+}
+
 // imported styles
 
+@import '../App';
 @import "../components/helpers/Table/Table";
 @import "../components/helpers/LoaderOverlay/LoaderOverlay";
 @import "../components/LeftMenuPanel/LeftMenuPanel";
 @import "../components/MainContent/MainContent";
 @import "../components/HeaderContent/HeaderContent";
-@import '../App';

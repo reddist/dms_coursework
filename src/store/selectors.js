@@ -4,7 +4,7 @@ import { getIn } from "immutable";
 export const selectAvailableTables = (state) =>
   getIn(state, ["app", "tables", "available_tables"], []);
 
-export const selectCurrentTable = (state) =>
+export const selectNameOfCurrentTable = (state) =>
   getIn(state, ["app", "current_table"], []);
 
 export const selectIsLoadingAvailableTables = (state) =>
@@ -17,11 +17,24 @@ export const selectIsLoadingTableData = createSelector(
 )
 
 export const selectTableDataByTableName = (tableName) => createSelector(
-  (state) => getIn(state, ["app", "tables", "data", tableName], []),
+  (state) => getIn(state, ["app", "tables", "data", `${tableName}`], []),
   (tableData) => tableData
 );
 
 export const selectCurrentTableData = (state) => {
-  const current_table = selectCurrentTable(state);
+  const current_table = selectNameOfCurrentTable(state);
   return selectTableDataByTableName(current_table)(state);
 }
+
+export const selectSelectedRows = (state) =>
+  getIn(state, ["app", "tables", "selected_rows"], []);
+
+export const selectFilteredData = (tableName) => createSelector(
+  selectSelectedRows,
+  selectTableDataByTableName(tableName),
+  (selected_rows_nums, table_data) => {
+    return table_data["data"].filter(item =>
+      selected_rows_nums.includes(item["key"])
+    );
+  }
+);

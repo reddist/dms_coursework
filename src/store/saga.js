@@ -78,3 +78,5 @@ export default [
     yield put(availableTablesFetch(true))
   }
 ];
+
+//TODO сделать сагу для отправки данных (новый кортеж/удалить кортежи)

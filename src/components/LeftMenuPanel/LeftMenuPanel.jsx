@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   selectAvailableTables,
-  selectCurrentTable,
+  selectNameOfCurrentTable,
   selectIsLoadingAvailableTables,
 } from "../../store/selectors";
 import { bindActionCreators } from "redux";
@@ -78,7 +78,7 @@ const LeftMenuPanel = ({
 
 export default connect((state) => ({
     available_tables: selectAvailableTables(state),
-    current_table: selectCurrentTable(state),
+    current_table: selectNameOfCurrentTable(state),
     loading: selectIsLoadingAvailableTables(state),
   }),
   (dispatch) => ({

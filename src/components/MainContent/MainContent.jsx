@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  selectCurrentTable, selectCurrentTableData,
+  selectNameOfCurrentTable,
+  selectCurrentTableData,
   selectIsLoadingTableData
 } from "../../store/selectors";
 import {bindActionCreators} from "redux";
 import {setCurrentTable} from "../../store/actionCreators";
 import LoaderOverlay from "../helpers/LoaderOverlay/LoaderOverlay";
+import TableContent from "./TableContent";
 
 const MainContent = ({
   loading = false,
@@ -16,10 +18,10 @@ const MainContent = ({
   return (
     <main className="main-content">
       <div className="container-fluid page__wrapper">
-        <h2>{current_table}</h2>
+        <h2 className="table-title">{current_table}</h2>
         <div className="content-block">
           <LoaderOverlay loading={loading}>
-            {`content: \n${JSON.stringify(data)}`}
+            <TableContent data={data} />
           </LoaderOverlay>
         </div>
       </div>
@@ -29,7 +31,7 @@ const MainContent = ({
 
 export default connect((state) => ({
     loading: selectIsLoadingTableData(state),
-    current_table: selectCurrentTable(state),
+    current_table: selectNameOfCurrentTable(state),
     data: selectCurrentTableData(state),
   }),
   (dispatch) => ({
