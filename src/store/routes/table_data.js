@@ -1,2 +1,2 @@
-export const path = "/api/table_data";
-export const method = "GET";
+module.exports.path = "/api/table_data";
+module.exports.method = "GET";

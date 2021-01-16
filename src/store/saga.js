@@ -3,15 +3,18 @@ import {
   put,
   takeLatest,
   select,
-  take,
-  delay,
-  all
+  delay
 } from "redux-saga/effects";
 import * as ACTION from "./actions";
 
-import {availableTablesFetch} from "./actionCreators";
-import {getIn} from "immutable";
+import {
+  availableTablesFetch,
+  setSelectedRows
+} from "./actionCreators";
+import { getIn } from "immutable";
 import * as api from "./api";
+import {selectNameOfCurrentTable, selectSelectedRows} from "./selectors";
+import openNotification from "../components/helpers/function/notification";
 
 function* fetchTableData(tableName) {
   yield put({
@@ -54,6 +57,18 @@ function* fetchAvailableTables() {
   }
 }
 
+function* sendSelectedRowsToDelete(tableName, keys) {
+  try {
+    const response = yield call(api.removeRows, tableName, keys);
+    const text = getIn(response, ["text"], "something went wrong");
+    const type = getIn(response, ["type"], "error")
+    openNotification(type, "", text);
+  } catch (error) {
+    console.log(error);
+    openNotification('error', "", "something went wrong");
+  }
+}
+
 export default [
   function*() {
     yield takeLatest([ACTION.AVAILABLE_TABLES.fetch], function*() {
@@ -72,6 +87,23 @@ export default [
         type: ACTION.TABLES_DATA.fetch,
         payload: action["payload"],
       })
+    });
+  },
+  function*() {
+    yield takeLatest([ACTION.REMOVE_ROWS], function*(){
+      yield put({
+        type: ACTION.LOADING_TABLE_DATA,
+        payload: true
+      });
+      const selected_rows = yield select(selectSelectedRows);
+      const table_name = yield select(selectNameOfCurrentTable);
+      console.log({table_name, selected_rows});
+      yield call(sendSelectedRowsToDelete, table_name, selected_rows);
+      yield put(setSelectedRows([]));
+      yield put({
+        type: ACTION.TABLES_DATA.fetch,
+        payload: table_name,
+      });
     });
   },
   function*() {

@@ -7,11 +7,11 @@ import {
 import { Button, Popconfirm } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useAction } from "../helpers/function/useAction";
-import { TABLES_DATA } from "../../store/actions";
+import { REMOVE_ROWS } from "../../store/actions";
 
 const RemoveButton = () => {
   const table_loading = useSelector(selectIsLoadingTableData);
-  const refreshTable = useAction(TABLES_DATA.fetch);
+  const removeRows = useAction(REMOVE_ROWS);
   const selectedRowsSize = useSelector(selectSelectedRows).length;
   const disabled = selectedRowsSize <= 0;
   return (
@@ -19,7 +19,7 @@ const RemoveButton = () => {
       title="Вы уверены?"
       okText="Да"
       cancelText="Нет"
-      onConfirm={refreshTable}
+      onConfirm={removeRows}
     >
       <Button
         type="danger"

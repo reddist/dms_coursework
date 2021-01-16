@@ -8,15 +8,20 @@ import XLSX from "xlsx";
 
 const constructToXLSXReadableData = (data) => {
   let resultData = [];
+  let columnDataIndexes = [];
   const columnNamesArray = data["columns"].map((item) => {
+    columnDataIndexes.push(item["dataIndex"]);
     return item["title"];
   });
   resultData.push(columnNamesArray);
   data["data"].map((item) => {
     let newRow = [];
-    Object.keys(item).forEach((key) =>
-      key !== "key" && newRow.push(item[key])
-    );
+    columnDataIndexes.forEach((dataIndex) => {
+      newRow.push(item[dataIndex]);
+    });
+    // Object.keys(item).forEach((key) =>
+    //   key !== "key" && newRow.push(item[key])
+    // );
     resultData.push(newRow);
     return item;
   });
@@ -61,20 +66,32 @@ const reducer = createReducer(
       (state, { payload }) => {
         const tableName = getIn(payload, ["table_data", "name"], "");
         const tableData = getIn(payload, ["table_data"], {});
-        return deepMerge(state, {
-          app: {
-            tables: {
-              data: {
-                [tableName]: tableData
+        if (!getIn(
+          state,
+          ["app", "tables", "data"],
+          {}
+        ).hasOwnProperty(tableName)) {
+          state = deepMerge(state, {
+            app: {
+              tables: {
+                data: {
+                  [tableName]: {}
+                }
               }
             }
-          }
-        });
+          });
+        }
+        return setIn(
+          state,
+          ["app", "tables", "data", tableName],
+          tableData
+        );
       },
       (state) => setIn(state, ["app", "tables", "data_loading"], false),
     ],
     [ACTION.SET_SELECTED_ROWS]: [
-      (state, { payload }) => setIn(state,
+      (state, { payload }) => setIn(
+        state,
         ["app", "tables", "selected_rows"],
          payload
       ),
@@ -89,6 +106,13 @@ const reducer = createReducer(
         );
         return state;
       },
+    ],
+    [ACTION.LOADING_TABLE_DATA]: [
+      (state, { payload }) => setIn(
+        state,
+        ["app", "tables", "data_loading"],
+        payload
+      ),
     ]
   }
 )

@@ -9,6 +9,7 @@ import {bindActionCreators} from "redux";
 import {setCurrentTable} from "../../store/actionCreators";
 import LoaderOverlay from "../helpers/LoaderOverlay/LoaderOverlay";
 import TableContent from "./TableContent";
+import upperCaseFirstLetter from "../helpers/function/upperCaseFirstLetter";
 
 const MainContent = ({
   loading = false,
@@ -18,7 +19,7 @@ const MainContent = ({
   return (
     <main className="main-content">
       <div className="container-fluid page__wrapper">
-        <h2 className="table-title">{current_table}</h2>
+        <h2 className="table-title">{upperCaseFirstLetter(current_table)}</h2>
         <div className="content-block">
           <LoaderOverlay loading={loading}>
             <TableContent data={data} />

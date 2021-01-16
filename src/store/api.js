@@ -12,87 +12,29 @@ import {
   path as remove_rows_path
 } from "./routes/table_data";
 
+const base_path = "http://localhost:4000";
+
 export function loadAvailableTables() {
   return new Promise((resolve, reject) => {
     ajax({
-      url: available_tables_path,
+      url: base_path + available_tables_path,
       method: available_tables_method,
       dataType: "json",
       data: {},
-      mockOptions: {
-        success: {
-          available_tables: [
-            "Table 1",
-            "Table 2",
-            "Table 3",
-          ],
-        },
-        delay: 2000,
-      },
       success: resolve,
       error: reject,
     });
   });
 }
 
-const createMockTableData = (tableName, num) => {
-  let result = [];
-  for (let i = 0; i < num; i++) {
-    result.push({
-      key: i * 2 + 1,
-      number: 10,
-      fruit: "яблоко",
-      table: tableName,
-    });
-    result.push({
-      key: i * 2 + 2,
-      number: 5,
-      fruit: "груша",
-      table: tableName,
-    });
-  }
-  return result;
-};
-
 export function loadTableData(tableName) {
   return new Promise((resolve, reject) => {
     ajax({
-      url: table_data_path,
+      url: base_path + table_data_path,
       method: table_data_method,
       dataType: "json",
       data: {
-        tableName
-      },
-      mockOptions: {
-        success: {
-          table_data: {
-            name: tableName,
-            columns: [
-              {
-                title: "Number",
-                dataIndex: "number",
-                type: "integer",
-              },
-              {
-                title: "Fruit",
-                dataIndex: "fruit",
-                type: "string",
-              },
-              {
-                title: "Table",
-                dataIndex: "table",
-                type: "string",
-              }
-            ],
-            data: createMockTableData(tableName, tableName === "Table 1"
-              ? 6
-              : tableName === "Table 2"
-                ? 0
-                : 2
-            )
-          }
-        },
-        delay: 2000,
+        table_name: tableName,
       },
       success: resolve,
       error: reject,
@@ -103,7 +45,7 @@ export function loadTableData(tableName) {
 export function removeRows(tableName, keys) {
   return new Promise((resolve, reject) => {
     ajax({
-      url: remove_rows_path,
+      url: base_path + remove_rows_path,
       method: remove_rows_method,
       dataType: "json",
       data: {
@@ -112,29 +54,8 @@ export function removeRows(tableName, keys) {
       },
       mockOptions: {
         success: {
-          table_data: {
-            name: tableName,
-            columns: [
-              {
-                title: "Number",
-                dataIndex: "number",
-              },
-              {
-                title: "Fruit",
-                dataIndex: "fruit",
-              },
-              {
-                title: "Table",
-                dataIndex: "table",
-              }
-            ],
-            data: createMockTableData(tableName, tableName === "Table 1"
-              ? 5
-              : tableName === "Table 2"
-                ? 0
-                : 1
-            )
-          }
+          type: 'success',
+          text: "Данные успешно удалены",
         },
         delay: 1000,
       },

@@ -1,2 +1,2 @@
-export const path = "/api/remove_rows";
-export const method = "POST";
+module.exports.path = "/api/remove_rows";
+module.exports.method = "POST";

@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import { setCurrentTable } from "../../store/actionCreators"
 import classNames from "classnames";
 import LoaderOverlay from "../helpers/LoaderOverlay/LoaderOverlay";
+import upperCaseFirstLetter from "../helpers/function/upperCaseFirstLetter";
 
 const PanelItem = ({
   title,
@@ -24,7 +25,7 @@ const PanelItem = ({
     <span
       className="panel-menu__title"
     >
-      {title}
+      {upperCaseFirstLetter(title)}
     </span>
   </li>
 );

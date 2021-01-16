@@ -31,11 +31,9 @@ const ChooseAllButton = () => {
       }}
     >
       {!table_loading && corteges.length > 0 && (
-        selectedRowsNumber === corteges.length ? (
-          <CloseOutlined />
-        ) : (
-          <CheckOutlined />
-        )
+        selectedRowsNumber === corteges.length
+          ? <CloseOutlined />
+          : <CheckOutlined />
       )}
       Выбрать всё
     </Button>
