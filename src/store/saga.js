@@ -61,22 +61,54 @@ function* sendSelectedRowsToDelete(tableName, keys) {
   try {
     const response = yield call(api.removeRows, tableName, keys);
     const text = getIn(response, ["text"], "something went wrong");
-    const type = getIn(response, ["type"], "error")
-    openNotification(type, "", text);
+    const type = getIn(response, ["type"], "error");
+    const duration = getIn(response, ["duration"], 2.0);
+    openNotification(type, "", text, duration);
   } catch (error) {
     console.log(error);
     openNotification('error', "", "something went wrong");
   }
 }
 
-export default [
+function* sendDataToAddARow(tableName, data) {
+  try {
+    const response = yield call(api.addRow, tableName, data);
+    const text = getIn(response, ["text"], "something went wrong");
+    const type = getIn(response, ["type"], "error");
+    const duration = getIn(response, ["duration"], 2.0);
+    openNotification(type, "", text, duration);
+  } catch (error) {
+    console.log(error);
+    openNotification('error', "", "something went wrong");
+  }
+}
+
+function* fetchForeignRow(tableName, key) {
+  try {
+    const response = yield call(api.getRow, tableName, key);
+    const type = getIn(response, ["type"], "error");
+    const data = {
+      type,
+      data: getIn(response, ["data"], "Не удалось получить данные.")
+    }
+    yield put({
+      type: ACTION.SET_FOREIGN_ROW_DATA,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    openNotification('error', "", "something went wrong");
+  }
+}
+
+const sagas = [
   function*() {
     yield takeLatest([ACTION.AVAILABLE_TABLES.fetch], function*() {
-      yield delay(100);
+      //yield delay(1000);
       yield call(fetchAvailableTables);
     });
     yield takeLatest([ACTION.TABLES_DATA.fetch], function*(action){
-      yield delay(100);
+      //yield delay(1000);
       const tableName = action["payload"];
       yield call(fetchTableData, tableName);
     });
@@ -107,8 +139,46 @@ export default [
     });
   },
   function*() {
+    yield takeLatest([ACTION.ADD_A_ROW], function*(action){
+      const newRowData = action["payload"];
+      yield put({
+        type: ACTION.LOADING_TABLE_CONTENT,
+        payload: true
+      });
+      const table_name = yield select(selectNameOfCurrentTable);
+      console.log({table_name, newRowData});
+      yield delay(700);
+      yield call(sendDataToAddARow, table_name, newRowData);
+      yield put(setSelectedRows([]));
+      yield put({
+        type: ACTION.LOADING_TABLE_CONTENT,
+        payload: false
+      });
+      yield put({
+        type: ACTION.TABLES_DATA.fetch,
+        payload: table_name,
+      });
+    });
+  },
+  function*() {
+    yield takeLatest([ACTION.FETCH_FOREIGN_ROW], function*(action){
+      const { tableName, key } = action["payload"];
+      yield put({
+        type: ACTION.LOADING_FOREIGN_ROW,
+        payload: true
+      });
+      console.log({tableName, key});
+      yield delay(700);
+      yield call(fetchForeignRow, tableName, key);
+      yield put({
+        type: ACTION.LOADING_FOREIGN_ROW,
+        payload: false
+      });
+    });
+  },
+  function*() {
     yield put(availableTablesFetch(true))
   }
 ];
 
-//TODO сделать сагу для отправки данных (новый кортеж/удалить кортежи)
+export default sagas;

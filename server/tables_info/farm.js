@@ -1,6 +1,13 @@
-const cart_data = {
+const farm_data = {
   name: "farm",
   columns: [
+    {
+      title: "farm_id",
+      dataIndex: "farm_id",
+      type: "integer",
+      width: 100,
+      align: 'center',
+    },
     {
       title: "Name",
       dataIndex: "name",
@@ -16,4 +23,4 @@ const cart_data = {
   data: [],
 };
 
-module.exports = cart_data;
+module.exports = farm_data;

@@ -20,93 +20,11 @@ insert into position (
     name, salary
 ) values ('Маркетолог', 56000);
 
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Иван', 'Андреев',
-    '2020-11-25', 'Неполное высшее',
-    1
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Андрей', 'Иванов',
-    '2018-01-18', 'Высшее',
-    2
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Василий', 'Карпов',
-    '2019-04-13', 'Среднее образование',
-    3
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Александр', 'Верещагин',
-    '2020-07-17', 'Среднее образование',
-    3
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Варвара', 'Полыгалова',
-    '2020-09-04', 'Высшее образование',
-    4
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Анастасия', 'Петрова',
-    '2020-08-26', 'Высшее образование',
-    4
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Петр', 'Казаков',
-    '2020-04-17', 'Высшее образование',
-    5
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Екатерина', 'Ли',
-    '2019-11-11', 'Высшее образование',
-    6
-);
-insert into employee (
-    name, surname,
-    hiring_date, education,
-    position_id
-) values (
-    'Маргарита', 'Макеева',
-    '2020-05-27', 'Высшее образование',
-    7
-);
-
 insert into office (
     country, city, address, rent_cost
 ) VALUES (
     'Россия', 'Санкт-Петербург', '1-ая Конюшенная, 28', 300000
-);
+ );
 insert into office (
     country, city, address, rent_cost
 ) VALUES (
@@ -116,6 +34,88 @@ insert into office (
     country, city, address, rent_cost
 ) VALUES (
     'Россия', 'Санкт-Петербург', 'Лиговский проспект, 43', 195000
+);
+
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Иван', 'Андреев',
+    '2020-11-25', 'Неполное высшее',
+    1, 2
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Андрей', 'Иванов',
+    '2018-01-18', 'Высшее',
+    2, 1
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Василий', 'Карпов',
+    '2019-04-13', 'Среднее образование',
+    3, 3
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Александр', 'Верещагин',
+    '2020-07-17', 'Среднее образование',
+    3, 1
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Варвара', 'Полыгалова',
+    '2020-09-04', 'Высшее образование',
+    4, 1
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Анастасия', 'Петрова',
+    '2020-08-26', 'Высшее образование',
+    4, 2
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Петр', 'Казаков',
+    '2020-04-17', 'Высшее образование',
+    5, 3
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Ли', 'Хуань',
+    '2019-11-11', 'Высшее образование',
+    6, 2
+);
+insert into employee (
+    name, surname,
+    hiring_date, education,
+    position_id, office_id
+) values (
+    'Маргарита', 'Макеева',
+    '2020-05-27', 'Высшее образование',
+    7, 2
 );
 
 insert into horse (

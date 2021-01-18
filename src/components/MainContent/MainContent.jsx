@@ -22,7 +22,9 @@ const MainContent = ({
         <h2 className="table-title">{upperCaseFirstLetter(current_table)}</h2>
         <div className="content-block">
           <LoaderOverlay loading={loading}>
-            <TableContent data={data} />
+            <TableContent
+              data={data}
+            />
           </LoaderOverlay>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   selectCurrentTableData,
-  selectIsLoadingTableData,
+  selectIsLoadingActionButtons,
   selectSelectedRows
 } from "../../store/selectors";
 import { Button } from "antd";
@@ -11,7 +11,7 @@ import { SET_SELECTED_ROWS } from "../../store/actions";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 const ChooseAllButton = () => {
-  const table_loading = useSelector(selectIsLoadingTableData);
+  const table_loading = useSelector(selectIsLoadingActionButtons);
   const setSelectedRows = useAction(SET_SELECTED_ROWS);
   const selectedRowsNumber = useSelector(selectSelectedRows).length;
   const corteges = useSelector(selectCurrentTableData)["data"] || [];

@@ -16,6 +16,24 @@ create trigger cell_was_added
     after INSERT on cell
     for each row execute procedure cell_was_added_function();
 
+create function cell_was_deleted_function()
+    returns trigger as $$
+BEGIN
+    UPDATE pick_up_point
+        SET number_of_cells = number_of_cells - 1
+        WHERE pick_up_point_id = OLD.pick_up_point_id;
+    UPDATE pick_up_point
+        SET number_of_free_cells = number_of_free_cells - 1
+        WHERE pick_up_point_id = OLD.pick_up_point_id
+            AND OLD.status = 'available';
+    RETURN old;
+END;
+$$ LANGUAGE plpgsql;
+
+create trigger cell_was_deleted
+    after DELETE on cell
+    for each row execute procedure cell_was_deleted_function();
+
 create function cell_was_updated_function()
     returns trigger as $cell_was_updated_function$
     BEGIN

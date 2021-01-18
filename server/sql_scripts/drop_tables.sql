@@ -1,5 +1,7 @@
 drop trigger if exists cell_was_added on cell cascade;
 drop function if exists cell_was_added_function() cascade;
+drop trigger if exists cell_was_deleted on cell cascade;
+drop function if exists cell_was_deleted_function() cascade;
 drop trigger if exists cell_was_updated on cell cascade;
 drop function if exists cell_was_updated_function() cascade;
 drop trigger if exists horse_was_updated on horse cascade;

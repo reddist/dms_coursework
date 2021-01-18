@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import {
-  selectIsLoadingTableData,
+  selectIsLoadingActionButtons,
   selectSelectedRows
 } from "../../store/selectors";
 import { Button, Popconfirm } from 'antd';
@@ -10,7 +10,7 @@ import { useAction } from "../helpers/function/useAction";
 import { REMOVE_ROWS } from "../../store/actions";
 
 const RemoveButton = () => {
-  const table_loading = useSelector(selectIsLoadingTableData);
+  const table_loading = useSelector(selectIsLoadingActionButtons);
   const removeRows = useAction(REMOVE_ROWS);
   const selectedRowsSize = useSelector(selectSelectedRows).length;
   const disabled = selectedRowsSize <= 0;

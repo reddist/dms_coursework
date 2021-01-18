@@ -10,7 +10,15 @@ import {
 import {
   method as remove_rows_method,
   path as remove_rows_path
-} from "./routes/table_data";
+} from "./routes/remove_rows";
+import {
+  method as add_a_row_method,
+  path as add_a_row_path
+} from "./routes/add_a_row";
+import {
+  method as get_a_row_method,
+  path as get_a_row_path
+} from "./routes/get_a_row";
 
 const base_path = "http://localhost:4000";
 
@@ -49,15 +57,40 @@ export function removeRows(tableName, keys) {
       method: remove_rows_method,
       dataType: "json",
       data: {
-        tableName,
+        table_name: tableName,
         keys,
       },
-      mockOptions: {
-        success: {
-          type: 'success',
-          text: "Данные успешно удалены",
-        },
-        delay: 1000,
+      success: resolve,
+      error: reject,
+    });
+  });
+}
+
+export function addRow(tableName, data) {
+  return new Promise((resolve, reject) => {
+    ajax({
+      url: base_path + add_a_row_path,
+      method: add_a_row_method,
+      dataType: "json",
+      data: {
+        table_name: tableName,
+        row_data: data,
+      },
+      success: resolve,
+      error: reject,
+    });
+  });
+}
+
+export function getRow(tableName, key) {
+  return new Promise((resolve, reject) => {
+    ajax({
+      url: base_path + get_a_row_path,
+      method: get_a_row_method,
+      dataType: "json",
+      data: {
+        table_name: tableName,
+        key,
       },
       success: resolve,
       error: reject,

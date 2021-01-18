@@ -4,6 +4,7 @@ import { Space } from "antd";
 import DownLoadButton from "./DownloadButton";
 import RemoveButton from "./RemoveButton";
 import ChooseAllButton from "./ChooseAllButton";
+import AddRowButton from "./AddRowButton";
 
 const HeaderContent = () => {
   return (
@@ -12,11 +13,7 @@ const HeaderContent = () => {
         className="header-block"
         size="middle"
       >
-        {/*
-      TODO сделать кнопки для таблицы:
-        - добавить кортеж,
-        - удалить кортежи,
-     */}
+        <AddRowButton />
         <RemoveButton />
         <DownLoadButton />
         <RefreshButton />

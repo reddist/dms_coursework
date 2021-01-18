@@ -19,9 +19,6 @@ const constructToXLSXReadableData = (data) => {
     columnDataIndexes.forEach((dataIndex) => {
       newRow.push(item[dataIndex]);
     });
-    // Object.keys(item).forEach((key) =>
-    //   key !== "key" && newRow.push(item[key])
-    // );
     resultData.push(newRow);
     return item;
   });
@@ -113,6 +110,27 @@ const reducer = createReducer(
         ["app", "tables", "data_loading"],
         payload
       ),
+    ],
+    [ACTION.LOADING_TABLE_CONTENT]: [
+      (state, { payload }) => setIn(
+        state,
+        ["app", "table_content_loading"],
+        payload
+      ),
+    ],
+    [ACTION.LOADING_FOREIGN_ROW]: [
+      (state, { payload }) => setIn(
+        state,
+        ["app", "loading_foreign_row"],
+        payload
+      ),
+    ],
+    [ACTION.SET_FOREIGN_ROW_DATA]: [
+      (state, { payload }) => setIn(
+        state,
+        ["app", "foreign_row"],
+        payload
+      )
     ]
   }
 )

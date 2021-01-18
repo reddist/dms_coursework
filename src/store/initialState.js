@@ -8,6 +8,9 @@ const initialState = {
     },
     current_table: "",
     loading: false,
+    table_content_loading: false,
+    loading_foreign_row: false,
+    foreign_row: {},
   }
 };
 

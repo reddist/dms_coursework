@@ -1,17 +1,17 @@
-const cart_data = {
-  name: "cart",
+const horse_data = {
+  name: "horse",
   columns: [
     {
-      title: "cart_id",
-      dataIndex: "cart_id",
+      title: "horse_id",
+      dataIndex: "horse_id",
       type: "integer",
       width: 100,
       align: 'center',
     },
     {
-      title: "Capacity",
-      dataIndex: "capacity",
-      type: "integer",
+      title: "Name",
+      dataIndex: "name",
+      type: "string",
     },
     {
       title: "Status",
@@ -20,8 +20,13 @@ const cart_data = {
       available_values: [
         'available',
         'on a trip',
-        'under maintenance'
+        'under care'
       ]
+    },
+    {
+      title: "Last care date",
+      dataIndex: "last_care_date",
+      type: "date",
     },
     {
       title: "Office_id",
@@ -31,8 +36,8 @@ const cart_data = {
       table_name: "office",
     },
   ],
-  key: ["cart_id"],
+  key: ["horse_id"],
   data: [],
 };
 
-module.exports = cart_data;
+module.exports = horse_data;
