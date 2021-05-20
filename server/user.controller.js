@@ -124,8 +124,7 @@ class UserController {
             await db.query(finalQuery);
             res.json({
                 type: 'success',
-                text: "fuck you, данные добавлены",
-                //text: "Запись успешно добавлена",
+                text: "Запись успешно добавлена",
             });
         } catch (error) {
             res.json({

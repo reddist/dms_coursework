@@ -2,7 +2,7 @@ const cart_data = {
   name: "cart",
   columns: [
     {
-      title: "cart_id",
+      title: "Cart id",
       dataIndex: "cart_id",
       type: "integer",
       width: 100,
@@ -24,7 +24,7 @@ const cart_data = {
       ]
     },
     {
-      title: "Office_id",
+      title: "Office id",
       dataIndex: "office_id",
       type: "integer",
       is_foreign: true,

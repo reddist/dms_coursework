@@ -104,11 +104,11 @@ function* fetchForeignRow(tableName, key) {
 const sagas = [
   function*() {
     yield takeLatest([ACTION.AVAILABLE_TABLES.fetch], function*() {
-      //yield delay(1000);
+      yield delay(1000);
       yield call(fetchAvailableTables);
     });
     yield takeLatest([ACTION.TABLES_DATA.fetch], function*(action){
-      //yield delay(1000);
+      yield delay(1000);
       const tableName = action["payload"];
       yield call(fetchTableData, tableName);
     });
